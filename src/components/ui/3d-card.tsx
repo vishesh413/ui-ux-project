@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-
 import React, {
   createContext,
   useState,
@@ -10,6 +9,9 @@ import React, {
   useEffect,
   Dispatch,
   SetStateAction,
+  ReactNode,
+  ElementType,
+  MouseEvent,
 } from "react";
 
 const MouseEnterContext = createContext<
@@ -21,14 +23,14 @@ export const CardContainer = ({
   className,
   containerClassName,
 }: {
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   containerClassName?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 25;
@@ -74,7 +76,7 @@ export const CardBody = ({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) => {
   return (
@@ -101,8 +103,8 @@ export const CardItem = ({
   rotateZ = 0,
   ...rest
 }: {
-  as?: React.ElementType;
-  children: React.ReactNode;
+  as?: ElementType;
+  children: ReactNode;
   className?: string;
   translateX?: number | string;
   translateY?: number | string;
@@ -110,7 +112,7 @@ export const CardItem = ({
   rotateX?: number | string;
   rotateY?: number | string;
   rotateZ?: number | string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMouseEntered] = useMouseEnter();

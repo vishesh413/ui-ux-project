@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId, useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
@@ -31,14 +31,14 @@ export const SparklesCore = (props: ParticlesProps) => {
     particleDensity,
   } = props;
 
-  const [init, setInit] = useState(false);
+  const [engineReady, setEngineReady] = useState(false);
   const controls = useAnimation();
   const generatedId = useId();
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
-    }).then(() => setInit(true));
+    }).then(() => setEngineReady(true));
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
@@ -52,7 +52,7 @@ export const SparklesCore = (props: ParticlesProps) => {
 
   return (
     <motion.div animate={controls} className={cn("opacity-0", className)}>
-      {init && (
+      {engineReady && (
         <Particles
           id={id || generatedId}
           className="h-full w-full"
@@ -64,12 +64,10 @@ export const SparklesCore = (props: ParticlesProps) => {
             interactivity: {
               events: {
                 onClick: { enable: true, mode: "push" },
-                onHover: { enable: false, mode: "repulse" },
-                resize: true,
+                resize: { enable: true },
               },
               modes: {
                 push: { quantity: 4 },
-                repulse: { distance: 200, duration: 0.4 },
               },
             },
             particles: {

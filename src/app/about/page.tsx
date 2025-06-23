@@ -1,8 +1,7 @@
-'use client';
+"use client";
+
 import { SparklesCore } from "@/components/ui/sparkles";
 import { motion } from "framer-motion";
-import Link from "next/link";
-
 import { StarsBackground } from "@/components/ui/stars-background";
 
 export default function AboutPage() {
@@ -31,7 +30,6 @@ export default function AboutPage() {
       transition={{ duration: 1.2, ease: "easeInOut" }}
       className="relative min-h-screen pt-32 px-4 sm:px-6 md:px-8 pb-20 overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black text-white"
     >
-      {/* Animated background layers */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.3 }}
@@ -46,7 +44,6 @@ export default function AboutPage() {
       />
 
       <div className="max-w-6xl mx-auto text-center space-y-16 ">
-        {/* Heading */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -81,7 +78,6 @@ export default function AboutPage() {
           </motion.div>
         </motion.div>
 
-        {/* Our Mission */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +111,6 @@ export default function AboutPage() {
           </motion.p>
         </motion.section>
 
-        {/* Learn Section */}
         <motion.section
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -137,10 +132,10 @@ export default function AboutPage() {
                 At <span className="text-purple-400 font-semibold">MDA</span>, we empower learners to go beyond passive tutorials and actually build, share, and grow in a vibrant, feedback-rich ecosystem.
               </p>
               <p className="text-lg text-gray-400 leading-relaxed">
-                With every course you complete, you unlock skills that aren't just theory—they're deployable, shareable, and portfolio-ready.
+                With every course you complete, you unlock skills that aren&apos;t just theory—they&apos;re deployable, shareable, and portfolio-ready.
               </p>
               <p className="text-md text-gray-500 leading-relaxed">
-                Progress with purpose, collaborate with clarity, and ship apps you're proud of.
+                Progress with purpose, collaborate with clarity, and ship apps you&apos;re proud of.
               </p>
             </motion.div>
             <motion.img
@@ -156,7 +151,6 @@ export default function AboutPage() {
           </div>
         </motion.section>
 
-        {/* Success Stories */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,10 +171,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.7, delay: index * 0.2 }}
                 viewport={{ once: false }}
                 whileHover={{ scale: 1.05 }}
-                className="relative border border-white/10 rounded-2xl bg-white/10 backdrop-blur-md p-8
-                          shadow-lg shadow-cyan-400/10
-                          transition-all duration-500 ease-in-out
-                          hover:shadow-2xl hover:shadow-cyan-400/30 hover:border-cyan-400"
+                className="relative border border-white/10 rounded-2xl bg-white/10 backdrop-blur-md p-8 shadow-lg shadow-cyan-400/10 transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-cyan-400/30 hover:border-cyan-400"
               >
                 <figcaption className="text-lg text-gray-300">
                   “{item.text}”
@@ -194,44 +185,31 @@ export default function AboutPage() {
           </div>
         </motion.section>
 
-       
-<motion.section
-  initial={{ opacity: 0, scale: 0.95 }}
-  whileInView={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 1.1, ease: "easeInOut" }}
-  viewport={{ once: false }}
-  className="relative bg-gradient-to-br from-purple-900/40 via-indigo-900/30 to-sky-900/20 p-10 rounded-2xl shadow-2xl ring-1 ring-white/10 backdrop-blur-xl overflow-hidden mt-24"
->
-  
-<div className="absolute text-3xl animate-bounce top-3 right-8">🔥</div>
-  <div className="absolute text-5xl animate-bounce bottom-6 left-10">🎯</div>
+        <motion.section
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
+          viewport={{ once: false }}
+          className="relative bg-gradient-to-br from-purple-900/40 via-indigo-900/30 to-sky-900/20 p-10 rounded-2xl shadow-2xl ring-1 ring-white/10 backdrop-blur-xl overflow-hidden mt-24"
+        >
+          <div className="absolute text-3xl animate-bounce top-3 right-8">🔥</div>
+          <div className="absolute text-5xl animate-bounce bottom-6 left-10">🎯</div>
 
-  <motion.h2
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-400 to-purple-500 text-center"
-  >
-    Unlock Your Dev Journey Today
-  </motion.h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-400 to-purple-500 text-center"
+          >
+            Unlock Your Dev Journey Today
+          </motion.h2>
 
-  <p className="mt-4 text-lg text-gray-400 max-w-xl mx-auto text-center">
-    Whether you're starting out or scaling up, MDA is your launchpad to success.
-  </p>
+          <p className="mt-4 text-lg text-gray-400 max-w-xl mx-auto text-center">
+            Whether you&apos;re starting out or scaling up, MDA is your launchpad to success.
+          </p>
+        </motion.section>
 
-  <div className="mt-8 flex justify-center">
-    <motion.div
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 300 }}
-    >
-      
-    </motion.div>
-  </div>
-</motion.section>
-
-
-      <StarsBackground />
+        <StarsBackground />
       </div>
     </motion.div>
   );

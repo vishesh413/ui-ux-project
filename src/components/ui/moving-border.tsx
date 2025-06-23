@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useRef } from "react";
 import {
   motion,
@@ -7,6 +8,17 @@ import {
   useTransform,
 } from "motion/react";
 import { cn } from "@/utils/cn";
+
+interface ButtonProps {
+  borderRadius?: string;
+  children: React.ReactNode;
+  as?: React.ElementType;
+  containerClassName?: string;
+  borderClassName?: string;
+  duration?: number;
+  className?: string;
+  [key: string]: unknown;
+}
 
 export function Button({
   borderRadius = "1.75rem",
@@ -17,16 +29,7 @@ export function Button({
   duration,
   className,
   ...otherProps
-}: {
-  borderRadius?: string;
-  children: React.ReactNode;
-  as?: any;
-  containerClassName?: string;
-  borderClassName?: string;
-  duration?: number;
-  className?: string;
-  [key: string]: any;
-}) {
+}: ButtonProps) {
   return (
     <Component
       className={cn(
@@ -67,20 +70,22 @@ export function Button({
   );
 }
 
+interface MovingBorderProps {
+  children: React.ReactNode;
+  duration?: number;
+  rx?: string;
+  ry?: string;
+  [key: string]: unknown;
+}
+
 export const MovingBorder = ({
   children,
   duration = 3000,
   rx,
   ry,
   ...otherProps
-}: {
-  children: React.ReactNode;
-  duration?: number;
-  rx?: string;
-  ry?: string;
-  [key: string]: any;
-}) => {
-  const pathRef = useRef<SVGRectElement | null>(null);
+}: MovingBorderProps) => {
+  const pathRef = useRef<SVGRectElement>(null);
   const progress = useMotionValue(0);
 
   useAnimationFrame((time) => {
