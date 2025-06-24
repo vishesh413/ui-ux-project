@@ -39,4 +39,6 @@ function Navbar({ className }: { className?: string }) {
 
 export default Navbar;
 
+//set active jo hum humne state decide kiya h us basis pr decide kr leta h
+
 //set active jo hum humne state decide kiya h us basis pr decide kr leta h 
