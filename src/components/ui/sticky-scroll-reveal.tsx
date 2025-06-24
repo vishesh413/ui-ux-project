@@ -1,24 +1,29 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { motion } from "motion/react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 
-export const StickyScroll = ({
+interface StickyScrollContent {
+  title: string;
+  description: string;
+  content?: React.ReactNode;
+  image: string;
+}
+
+interface StickyScrollProps {
+  content: StickyScrollContent[];
+  contentClassName?: string;
+}
+
+export const StickyScroll: React.FC<StickyScrollProps> = ({
   content,
   contentClassName,
-}: {
-  content: {
-    title: string;
-    description: string;
-    content?: React.ReactNode;
-    image: string;
-  }[];
-  contentClassName?: string | any;
 }) => {
   const [activeCard, setActiveCard] = useState(0);
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     container: ref,

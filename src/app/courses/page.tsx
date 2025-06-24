@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import courseData from "@/data/mobile_courses.json";
-import { motion } from "framer-motion";
-import { StarsBackground } from "@/components/ui/stars-background"; // ✅ Star Background import
+import { motion, Variants } from "framer-motion";
+import { StarsBackground } from "@/components/ui/stars-background"; // ✅ Correct named import
 
-const fadeUpStagger = {
+const fadeUpStagger: Variants = {
   hidden: { opacity: 0, y: 60, scale: 0.95 },
-  visible: (i: number) => ({
+  visible: (custom: number) => ({
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      delay: i * 0.2,
+      delay: custom * 0.2,
       duration: 0.6,
       ease: 'easeOut',
     },
@@ -25,9 +25,9 @@ function Page() {
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-12 pt-36 px-6
       before:content-[''] before:absolute before:inset-0 before:rounded-2xl before:ring-1 
       before:ring-gray-400/20 before:shadow-[0_0_60px_20px_rgba(200,200,200,0.08)] before:pointer-events-none overflow-hidden">
-      
+
       {/* ⭐ Background Stars Animation */}
-      <StarsBackground />
+      <StarsBackground className="absolute inset-0 z-0" />
 
       {/* Header */}
       <motion.h1
@@ -76,14 +76,14 @@ function Page() {
                       <img
                         src={course.image}
                         alt="bg"
-                        className="absolute top-0 left-0 w-full h-full object-cover blur-xl scale-110 opacity-40"
+                        className="absolute top-0 left-0 w-full h-full object-cover blur-xl scale-110 opacity-40 pointer-events-none"
+                        draggable={false}
                       />
                       <img
                         src={course.image}
                         alt="main"
-                        className={`relative z-10 w-full h-full ${
-                          course.image.includes("93659907") ? "object-contain" : "object-cover"
-                        }`}
+                        className={`relative z-10 w-full h-full ${course.image.includes("93659907") ? "object-contain" : "object-cover"}`}
+                        draggable={false}
                       />
                     </div>
                   </CardItem>

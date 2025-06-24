@@ -1,10 +1,10 @@
 "use client";
+
 import { cn } from "@/utils/cn";
 import React, {
   useState,
   useEffect,
   useRef,
-  RefObject,
   useCallback,
 } from "react";
 
@@ -34,8 +34,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
   className,
 }) => {
   const [stars, setStars] = useState<StarProps[]>([]);
-  const canvasRef: RefObject<HTMLCanvasElement> =
-    useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const generateStars = useCallback(
     (width: number, height: number): StarProps[] => {
@@ -82,23 +81,13 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
     updateStars();
 
     const resizeObserver = new ResizeObserver(updateStars);
-    if (canvasRef.current) {
-      resizeObserver.observe(canvasRef.current);
-    }
+    const currentCanvas = canvasRef.current;
+    if (currentCanvas) resizeObserver.observe(currentCanvas);
 
     return () => {
-      if (canvasRef.current) {
-        resizeObserver.unobserve(canvasRef.current);
-      }
+      if (currentCanvas) resizeObserver.unobserve(currentCanvas);
     };
-  }, [
-    starDensity,
-    allStarsTwinkle,
-    twinkleProbability,
-    minTwinkleSpeed,
-    maxTwinkleSpeed,
-    generateStars,
-  ]);
+  }, [generateStars]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -129,14 +118,12 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 
     render();
 
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
+    return () => cancelAnimationFrame(animationFrameId);
   }, [stars]);
 
   return (
     <canvas
-      ref={canvasRef}
+      ref={canvasRef as React.RefObject<HTMLCanvasElement>}
       className={cn("h-full w-full absolute inset-0", className)}
     />
   );
