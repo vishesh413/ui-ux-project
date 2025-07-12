@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants, Transition } from "framer-motion";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function AboutPage() {
   const [typedText, setTypedText] = useState("");
@@ -23,20 +24,22 @@ export default function AboutPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const emojiVariants = {
+  const floatTransition: Transition = {
+    duration: 5,
+    repeat: Infinity,
+    ease: "easeInOut",
+    repeatType: "mirror",
+  };
+
+  const emojiVariants: Variants = {
     float: {
       y: [0, -20, 0],
-      transition: {
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-        repeatType: "mirror",
-      },
+      transition: floatTransition,
     },
   };
 
-  // Mouse move handler for tilt effect (no TS types)
-  const handleMouseMove = (e) => {
+  // Mouse move handler for tilt effect with proper TS typing
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left; // Mouse X relative to div
     const y = e.clientY - rect.top; // Mouse Y relative to div
@@ -54,8 +57,7 @@ export default function AboutPage() {
     setTilt({ rotateX: 0, rotateY: 0 });
   };
 
-  // Split emojis correctly (handle multi-char emojis)
-  // Using an array of emojis instead of split("") because some emojis have multiple unicode chars
+  // Array of emojis for floating effect
   const emojis = ["🎨", "🛠️", "📱", "⚙️", "🚀"];
 
   return (
@@ -118,7 +120,7 @@ export default function AboutPage() {
             Learn to design and develop mobile-first experiences that feel fast, fluid, and intuitive.
           </p>
           <p className="text-gray-400 mt-5 text-base max-w-2xl mx-auto">
-            Whether you're a beginner or builder, our hands-on courses help you master Android, iOS, and cross-platform UI — with tools that scale and experiences that shine.
+            Whether you&apos;re a beginner or builder, our hands-on courses help you master Android, iOS, and cross-platform UI — with tools that scale and experiences that shine.
           </p>
 
           <div className="mt-14">
@@ -147,7 +149,7 @@ export default function AboutPage() {
               willChange: "transform",
             }}
           >
-            <img
+            <Image
               src="/images/mission.jpg"
               alt="Mission"
               className="w-full h-full object-cover transition duration-300 ease-in-out"
@@ -155,6 +157,9 @@ export default function AboutPage() {
                 transform: `scale(${tilt.rotateX !== 0 || tilt.rotateY !== 0 ? 1.05 : 1})`,
                 transition: "transform 0.3s ease",
               }}
+              width={400}
+              height={300}
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/10 via-blue-500/10 to-transparent pointer-events-none" />
           </div>
@@ -164,10 +169,10 @@ export default function AboutPage() {
               Our Mission
             </h2>
             <p className="text-gray-400 text-lg leading-relaxed tracking-wide">
-              We’re on a mission to simplify mobile development for everyone — from curious beginners to advanced creators — through hands-on learning, intuitive design, and a relentless focus on real impact.
+              We&rsquo;re on a mission to simplify mobile development for everyone — from curious beginners to advanced creators — through hands-on learning, intuitive design, and a relentless focus on real impact.
             </p>
             <p className="text-gray-400 text-lg leading-relaxed mt-6 tracking-wide">
-              Our goal is to help you not only <strong>learn to code apps</strong> — but to build experiences that feel polished, fast, and built for today’s users. Mobile-first isn’t just a strategy; it’s our standard.
+              Our goal is to help you not only <strong>learn to code apps</strong> — but to build experiences that feel polished, fast, and built for today&rsquo;s users. Mobile-first isn&rsquo;t just a strategy; it&rsquo;s our standard.
             </p>
           </div>
         </div>
