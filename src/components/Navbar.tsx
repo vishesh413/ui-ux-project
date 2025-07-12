@@ -18,7 +18,7 @@ function Navbar({ className }: { className?: string }) {
 
         {/* Our Courses Dropdown */}
         <Link href ="/courses">
-        <MenuItem setActive={setActive} active={active} item="Our courses" />
+        <MenuItem setActive={setActive} active={active} item="Courses" />
         </Link>
         
         
@@ -30,7 +30,7 @@ function Navbar({ className }: { className?: string }) {
 
         {/* Contact Us */}
         <Link href="/contact">
-          <MenuItem setActive={setActive} active={active} item="Contact us" />
+          <MenuItem setActive={setActive} active={active} item="Contact" />
         </Link>
       </Menu>
     </div>
@@ -39,6 +39,5 @@ function Navbar({ className }: { className?: string }) {
 
 export default Navbar;
 
-//set active jo hum humne state decide kiya h us basis pr decide kr leta h
 
 //set active jo hum humne state decide kiya h us basis pr decide kr leta h 
